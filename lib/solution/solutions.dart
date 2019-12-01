@@ -6,6 +6,6 @@ Advent adventForDay(int day) {
     case 1:
       return solution1.Solution();
     default:
-      throw ArgumentError("No solution for day $day");
+      return null;
   }
 }
