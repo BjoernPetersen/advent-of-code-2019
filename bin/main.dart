@@ -32,7 +32,7 @@ Future<void> main(List<String> arguments) async {
 extension on ArgResults {
   String getDay() {
     final opt = this["day"];
-    if (opt == null) {
+    if (opt == null && this.rest.isNotEmpty) {
       return this.rest.first;
     } else {
       return opt;
