@@ -4,7 +4,7 @@ import 'input.dart';
 
 Future<int> main(List<String> arguments) async {
   if (arguments.length != 1) {
-    print("Need exactly one number argument");
+    print("Need exactly one integer argument");
     return 1;
   }
   final day = int.tryParse(arguments.first);
