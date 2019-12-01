@@ -9,6 +9,7 @@ environment:
 dependencies:
   path: ^1.6.0
   resource: ^2.1.0
+  sprintf: ^4.0.0
 
 dev_dependencies:
   pedantic: ^1.8.0
