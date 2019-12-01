@@ -3,15 +3,13 @@ import 'package:test/test.dart';
 
 Future<int> solveOne(List<String> input) async {
   final advent = adventForDay(1)..init(input);
-  final solution = await advent.solveOne();
-  return int.parse(solution);
+  return await advent.solveOne();
 }
 
 Future<int> solveTwo(List<String> input) async {
   final advent = adventForDay(1)..init(input);
-  final solution = await advent.solveTwo();
-  return int.parse(solution);
-  }
+  return await advent.solveTwo();
+}
 
 void main() {
   group("part one", () {

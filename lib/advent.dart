@@ -1,16 +1,19 @@
-abstract class Advent {
-  List<String> _input;
+abstract class Advent<I, O1, O2> {
+  List<I> _input;
 
-  void init(List<String> input) {
+  void init(Iterable<String> input) {
     if (_input != null) {
       throw StateError("Can't set input twice");
     }
-    this._input = input;
+
+    _input = input.map(readInputLine).toList();
   }
 
-  List<String> get input => _input;
+  List<I> get input => _input;
 
-  Future<String> solveOne();
+  I readInputLine(String line);
 
-  Future<String> solveTwo();
+  Future<O1> solveOne();
+
+  Future<O2> solveTwo();
 }

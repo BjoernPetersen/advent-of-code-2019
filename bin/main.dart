@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:advent/solution/solutions.dart';
@@ -53,7 +54,7 @@ Future<int> _run(ArgResults args) async {
     return 4;
   }
   final input = await inputFile.readAsString();
-  advent.init(input.trim().split("\n"));
+  advent.init(LineSplitter.split(input.trim()));
 
   final solutionOne = await advent.solveOne();
   print("Solution one: $solutionOne");

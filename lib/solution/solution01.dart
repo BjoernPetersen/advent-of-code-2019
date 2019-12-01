@@ -1,24 +1,21 @@
 import 'package:advent/advent.dart';
 
-class Solution extends Advent {
+class Solution extends Advent<int, int, int> {
   @override
-  Future<String> solveOne() async {
-    return input
-        .map(int.parse)
-        .map(_fuelForMass)
-        .fold(0, (a, b) => a + b)
-        .toString();
+  Future<int> solveOne() async {
+    return input.map(_fuelForMass).fold<int>(0, (a, b) => a + b);
   }
 
   @override
-  Future<String> solveTwo() async {
+  Future<int> solveTwo() async {
     return input
-        .map(int.parse)
         .map(_fuelForMass)
         .map(_adjustedFuelMass)
-        .fold(0, (a, b) => a + b)
-        .toString();
+        .fold<int>(0, (a, b) => a + b);
   }
+
+  @override
+  int readInputLine(String line) => int.parse(line);
 
   int _adjustedFuelMass(int fuelMass) {
     final additional = _fuelForMass(fuelMass);
