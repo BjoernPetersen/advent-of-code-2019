@@ -10,5 +10,5 @@ Install Dart, then run:
 
 ```sh
 pub get
-pub run bin/main [dayNum]
+pub run main [dayNum]
 ```

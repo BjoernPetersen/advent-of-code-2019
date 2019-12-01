@@ -1,0 +1,53 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build_linux:
+    runs-on: ubuntu-latest
+    container: google/dart:latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: pub get
+      - name: Build executable
+        run: dart2native bin/main.dart -o bin/main-linux
+      - name: Upload binary executable
+        uses: actions/upload-artifact@v1
+        with:
+          name: advent-binaries
+          path: bin/main-linux
+
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - name: Install Dart SDK
+        run: choco install dart-sdk
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: pub get
+      - name: Build executable
+        run: dart2native bin/main.dart -o bin/main-win.exe
+      - name: Upload binary executable
+        uses: actions/upload-artifact@v1
+        with:
+          name: advent-binaries
+          path: bin/main-win.exe
+
+  build_mac:
+    runs-on: macos-latest
+    steps:
+      - name: Install Dart SDK
+        run: |
+          brew tap dart-lang/dart
+          brew install dart
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: pub get
+      - name: Build executable
+        run: dart2native bin/main.dart -o bin/main-macos
+      - name: Upload binary executable
+        uses: actions/upload-artifact@v1
+        with:
+          name: advent-binaries
+          path: bin/main-macos

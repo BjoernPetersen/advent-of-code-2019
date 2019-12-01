@@ -1,6 +1,5 @@
+import 'package:advent/input.dart';
 import 'package:advent/solution/solutions.dart';
-
-import 'input.dart';
 
 Future<int> main(List<String> arguments) async {
   if (arguments.length != 1) {
@@ -30,5 +29,3 @@ Future<int> main(List<String> arguments) async {
 
   return 0;
 }
-
-void tester() {}
