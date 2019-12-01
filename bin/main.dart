@@ -29,9 +29,21 @@ Future<void> main(List<String> arguments) async {
   }
 }
 
+extension on ArgResults {
+  String getDay() {
+    final opt = this["day"];
+    if (opt == null) {
+      return this.rest.first;
+    } else {
+      return opt;
+    }
+  }
+}
+
 Future<int> _run(ArgResults args) async {
-  final dayString = args["day"] ?? args.rest.first;
+  var dayString = args.getDay();
   if (dayString == null) {
+    print("No day provided.");
     return 1;
   }
 
