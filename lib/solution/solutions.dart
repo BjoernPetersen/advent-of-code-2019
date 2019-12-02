@@ -1,10 +1,10 @@
 import 'package:advent/advent.dart';
-import 'package:advent/solution/solution01.dart' as solution1;
+import 'package:advent/solution/solution01.dart';
 
 Advent adventForDay(int day) {
   switch (day) {
     case 1:
-      return solution1.Solution();
+      return Solution1();
     default:
       return null;
   }

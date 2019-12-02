@@ -1,6 +1,6 @@
 import 'package:advent/advent.dart';
 
-class Solution extends Advent<int, int, int> {
+class Solution1 extends Advent<int, int, int> {
   @override
   Future<int> solveOne() async {
     return input.map(_fuelForMass).fold<int>(0, (a, b) => a + b);
