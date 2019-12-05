@@ -23,13 +23,11 @@ jobs:
     steps:
       - name: Install Dart SDK
         run: choco install dart-sdk
-      - name: Refresh environment
-        run: refreshenv
       - uses: actions/checkout@v1
       - name: Install dependencies
-        run: pub get
+        run: C:\tools\dart-sdk\bin\pub get
       - name: Build executable
-        run: dart2native bin/main.dart -o bin/main-win.exe
+        run: C:\tools\dart-sdk\bin\dart2native bin/main.dart -o bin/main-win.exe
       - name: Upload binary executable
         uses: actions/upload-artifact@v1
         with:
