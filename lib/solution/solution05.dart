@@ -110,12 +110,12 @@ class Solution5 extends Advent<List<int>, int, int> {
 
   @override
   Future<int> solveOne() async {
-    return _run(List.of(program), [1].iterator).first;
+    return _run(List.of(program), [1].iterator).last;
   }
 
   @override
   Future<int> solveTwo() async {
-    return _run(List.of(program), [5].iterator).first;
+    return _run(List.of(program), [5].iterator).last;
   }
 }
 
