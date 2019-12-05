@@ -105,7 +105,7 @@ class Solution5 extends Advent<List<int>, int, int> {
   }
 
   Future<int> solve(List<int> inputs) async {
-    return _run(program, inputs.iterator).first;
+    return _run(program, inputs.iterator).last;
   }
 
   @override
