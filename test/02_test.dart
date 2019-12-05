@@ -1,15 +1,17 @@
-import 'package:advent/advent.dart';
-import 'package:advent/solution/solutions.dart';
+import 'package:advent/interpreter/interpreter.dart';
+import 'package:advent/util/strings.dart';
+import 'package:test/test.dart';
 
-Advent _advent(String input) {
-  return adventForDay(2)..init([input]);
+Future<int> _run(String input) async {
+  final program =
+      input.splitOn(",".codeUnitAt(0)).map(int.parse).toList(growable: false);
+  final result = await Interpreter().execute(program);
+  return result.positionZero;
 }
 
 Future main() async {
-  /*
-  Only works without substitution at positions 1,2:
   group("part one", () {
-    test("test", () => expect(_advent("1,9,10,3,2,3,11,0,99,30,40,50").solveOne(), completion(3500)));
+    test("test",
+        () => expect(_run("1,9,10,3,2,3,11,0,99,30,40,50"), completion(3500)));
   });
-   */
 }
