@@ -34,7 +34,7 @@ abstract class Instruction {
     }
   }
 
-  int execute(IO io);
+  Future<int> execute(IO io);
 
   int getParameter(final int num, [ParameterMode mode]) {
     if (mode == null) {
@@ -55,7 +55,7 @@ class ExitInstruction extends Instruction {
   ExitInstruction(List<int> program, int index) : super(program, index);
 
   @override
-  int execute(IO io) {
+  Future<int> execute(IO io) async {
     return -1;
   }
 }
@@ -64,7 +64,7 @@ class AddInstruction extends Instruction {
   AddInstruction(List<int> program, int index) : super(program, index);
 
   @override
-  int execute(IO io) {
+  Future<int> execute(IO io) async {
     final left = getParameter(1);
     final right = getParameter(2);
     final position = getParameter(3, ParameterMode.immediate);
@@ -77,7 +77,7 @@ class MultiplyInstruction extends Instruction {
   MultiplyInstruction(List<int> program, int index) : super(program, index);
 
   @override
-  int execute(IO io) {
+  Future<int> execute(IO io) async {
     final left = getParameter(1);
     final right = getParameter(2);
     final position = getParameter(3, ParameterMode.immediate);
@@ -90,9 +90,9 @@ class InputInstruction extends Instruction {
   InputInstruction(List<int> program, int index) : super(program, index);
 
   @override
-  int execute(IO io) {
+  Future<int> execute(IO io) async {
     final position = getParameter(1, ParameterMode.immediate);
-    program[position] = io.read();
+    program[position] = await io.read();
     return index + 2;
   }
 }
@@ -101,7 +101,7 @@ class OutputInstruction extends Instruction {
   OutputInstruction(List<int> program, int index) : super(program, index);
 
   @override
-  int execute(IO io) {
+  Future<int> execute(IO io) async {
     final value = getParameter(1);
     io.write(value);
     return index + 2;
@@ -112,7 +112,7 @@ class NonZeroJumpInstruction extends Instruction {
   NonZeroJumpInstruction(List<int> program, int index) : super(program, index);
 
   @override
-  int execute(IO io) {
+  Future<int> execute(IO io) async {
     final cond = getParameter(1);
     if (cond != 0) {
       return getParameter(2);
@@ -126,7 +126,7 @@ class ZeroJumpInstruction extends Instruction {
   ZeroJumpInstruction(List<int> program, int index) : super(program, index);
 
   @override
-  int execute(IO io) {
+  Future<int> execute(IO io) async {
     final cond = getParameter(1);
     if (cond == 0) {
       return getParameter(2);
@@ -140,7 +140,7 @@ class LessThanInstruction extends Instruction {
   LessThanInstruction(List<int> program, int index) : super(program, index);
 
   @override
-  int execute(IO io) {
+  Future<int> execute(IO io) async {
     final left = getParameter(1);
     final right = getParameter(2);
     final position = getParameter(3, ParameterMode.immediate);
@@ -153,7 +153,7 @@ class EqualsInstruction extends Instruction {
   EqualsInstruction(List<int> program, int index) : super(program, index);
 
   @override
-  int execute(IO io) {
+  Future<int> execute(IO io) async {
     final left = getParameter(1);
     final right = getParameter(2);
     final position = getParameter(3, ParameterMode.immediate);

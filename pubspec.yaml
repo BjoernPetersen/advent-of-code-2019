@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
+  async: ^2.4.0
   path: ^1.6.0
   sprintf: ^4.0.0
   args: ^1.5.0

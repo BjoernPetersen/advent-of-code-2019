@@ -16,14 +16,13 @@ class Solution2 extends Advent<List<int>, int, int> {
 
   @override
   Future<int> solveOne() async {
-    final result = await interpreter.execute(
+    return await interpreter.execute(
       program,
       substitutions: {
         1: 12,
         2: 2,
       },
     );
-    return result.positionZero;
   }
 
   @override
@@ -38,7 +37,7 @@ class Solution2 extends Advent<List<int>, int, int> {
               2: verb,
             },
           );
-          if (result.positionZero == 19690720) {
+          if (result == 19690720) {
             return noun * 100 + verb;
           }
         } on StateError {

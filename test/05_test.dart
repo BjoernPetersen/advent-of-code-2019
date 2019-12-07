@@ -1,4 +1,5 @@
 import 'package:advent/interpreter/interpreter.dart';
+import 'package:advent/interpreter/io.dart';
 import 'package:advent/util/strings.dart';
 import 'package:test/test.dart';
 
@@ -8,8 +9,9 @@ Future<int> _advent(String programStr, int input) async {
       .map(int.parse)
       .toList(growable: false);
   final interpreter = Interpreter();
-  final result = await interpreter.execute(program, input: [input]);
-  return result.outputs.last;
+  final io = StaticIO([input]);
+  await interpreter.execute(program, io: io);
+  return io.output.last;
 }
 
 Future main() async {

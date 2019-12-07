@@ -1,5 +1,6 @@
 import 'package:advent/advent.dart';
 import 'package:advent/interpreter/interpreter.dart';
+import 'package:advent/interpreter/io.dart';
 import 'package:advent/util/strings.dart';
 
 class Solution5 extends Advent<List<int>, int, int> {
@@ -16,13 +17,15 @@ class Solution5 extends Advent<List<int>, int, int> {
 
   @override
   Future<int> solveOne() async {
-    final result = await interpreter.execute(program, input: [1]);
-    return result.outputs.last;
+    final io = StaticIO([1]);
+    await interpreter.execute(program, io: io);
+    return io.output.last;
   }
 
   @override
   Future<int> solveTwo() async {
-    final result = await interpreter.execute(program, input: [5]);
-    return result.outputs.last;
+    final io = StaticIO([5]);
+    await interpreter.execute(program, io: io);
+    return io.output.last;
   }
 }

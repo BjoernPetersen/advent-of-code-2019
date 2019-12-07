@@ -5,8 +5,7 @@ import 'package:test/test.dart';
 Future<int> _run(String input) async {
   final program =
       input.splitOn(",".codeUnitAt(0)).map(int.parse).toList(growable: false);
-  final result = await Interpreter().execute(program);
-  return result.positionZero;
+  return await Interpreter().execute(program);
 }
 
 Future main() async {
