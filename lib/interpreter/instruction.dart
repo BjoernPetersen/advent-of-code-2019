@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:advent/interpreter/io.dart';
+import 'package:advent/util/ints.dart';
 
 abstract class Instruction {
   final List<int> program;
@@ -160,14 +159,6 @@ class EqualsInstruction extends Instruction {
     final position = getParameter(3, ParameterMode.immediate);
     program[position] = left == right ? 1 : 0;
     return index + 4;
-  }
-}
-
-extension on int {
-  int operator [](int index) => digitAt(index);
-
-  int digitAt(int index, {int length = 1}) {
-    return (this % pow(10, index + 1 * length)) ~/ pow(10, index);
   }
 }
 

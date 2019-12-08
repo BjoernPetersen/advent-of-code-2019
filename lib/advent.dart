@@ -11,6 +11,8 @@ abstract class Advent<I, O1, O2> {
 
   List<I> get input => _input;
 
+  I get single => input.single;
+
   I readInputLine(String line);
 
   Future<O1> solveOne();
