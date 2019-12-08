@@ -7,11 +7,24 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image:  google/dart:2.6
+      image: google/dart:2.6
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Install dependencies
-      run: pub get
-    - name: Run tests
-      run: pub run test
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: pub get
+      - name: Run tests
+        run: pub run test
+
+  dartanalyzer:
+    runs-on: ubuntu-latest
+
+    container:
+      image: google/dart:2.6
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: pub get
+      - name: Analyze project
+        run: dartanalyzer --fatal-warnings --fatal-infos .
