@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build_linux:
     runs-on: ubuntu-latest
-    container: google/dart:latest
+    container: google/dart:2.6
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
