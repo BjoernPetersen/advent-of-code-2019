@@ -13,7 +13,7 @@ class Solution8 extends Advent<Image, int, String> {
   @override
   Future<int> solveOne() async {
     Layer min;
-    final Map<Layer, Map<Color, int>> counts = Map();
+    final counts = <Layer, Map<Color, int>>{};
     for (final layer in single.layers) {
       final count = Counter.count(layer);
       counts[layer] = count;
@@ -28,6 +28,6 @@ class Solution8 extends Advent<Image, int, String> {
 
   @override
   Future<String> solveTwo() async {
-    return "\n$single";
+    return '\n$single';
   }
 }

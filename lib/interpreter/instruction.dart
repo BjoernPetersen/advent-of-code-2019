@@ -30,18 +30,19 @@ abstract class Instruction {
       case 8:
         return EqualsInstruction(program, index);
       default:
-        throw ArgumentError("Unknown opcode: $opCode");
+        throw ArgumentError('Unknown opcode: $opCode');
     }
   }
 
   Future<int> execute(IO io);
 
+  // ignore: missing_return
   int getParameter(final int num, [ParameterMode mode]) {
     if (mode == null) {
       final opInfo = program[index];
       mode = ParameterMode.values[opInfo[num + 1]];
     }
-    int value = program[index + num];
+    final value = program[index + num];
     switch (mode) {
       case ParameterMode.position:
         return program[value];

@@ -9,7 +9,7 @@ class Solution2 extends Advent<List<int>, int, int> {
   @override
   List<int> readInputLine(String line) {
     return line
-        .splitOn(",".codeUnitAt(0))
+        .splitOn(','.codeUnitAt(0))
         .map(int.parse)
         .toList(growable: false);
   }
@@ -27,8 +27,8 @@ class Solution2 extends Advent<List<int>, int, int> {
 
   @override
   Future<int> solveTwo() async {
-    for (int noun = 0; noun < 100; ++noun) {
-      for (int verb = 0; verb < 100; ++verb) {
+    for (var noun = 0; noun < 100; ++noun) {
+      for (var verb = 0; verb < 100; ++verb) {
         try {
           final result = await interpreter.execute(
             program,
@@ -45,5 +45,6 @@ class Solution2 extends Advent<List<int>, int, int> {
         }
       }
     }
+    throw StateError('No combination found');
   }
 }

@@ -11,7 +11,7 @@ class Solution7 extends Advent<List<int>, int, int> {
   @override
   List<int> readInputLine(String line) {
     return line
-        .splitOn(",".codeUnitAt(0))
+        .splitOn(','.codeUnitAt(0))
         .map(int.parse)
         .toList(growable: false);
   }
@@ -57,8 +57,8 @@ class Solution7 extends Advent<List<int>, int, int> {
 
   Future<int> _amplifyFeedback(List<int> phases) async {
     final interpreter = Interpreter();
-    final List<StreamIO> ios = List(5);
-    for (int amp = 0; amp < 5; ++amp) {
+    final ios = List<StreamIO>(5);
+    for (var amp = 0; amp < 5; ++amp) {
       final io = StreamIO();
       ios[amp] = io;
       io.addInput(phases[amp]);

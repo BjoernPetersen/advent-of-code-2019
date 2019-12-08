@@ -10,7 +10,7 @@ class Solution5 extends Advent<List<int>, int, int> {
   @override
   List<int> readInputLine(String line) {
     return line
-        .splitOn(",".codeUnitAt(0))
+        .splitOn(','.codeUnitAt(0))
         .map(int.parse)
         .toList(growable: false);
   }

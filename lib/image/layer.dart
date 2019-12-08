@@ -6,8 +6,7 @@ class Layer extends IterableBase<Color> {
   final int width, height;
   final List<List<Color>> _pixels;
 
-  Layer(this.width, this.height, List<List<Color>> pixels)
-      : this._pixels = pixels;
+  Layer(this.width, this.height, List<List<Color>> pixels) : _pixels = pixels;
 
   factory Layer.fromString(int width, int height, String spec) {
     final rows = List<List<Color>>(height);
@@ -15,7 +14,7 @@ class Layer extends IterableBase<Color> {
       final row = List<Color>(width);
       rows[y] = row;
       for (var x = 0; x < width; ++x) {
-        int index = y * width + x;
+        final index = y * width + x;
         row[x] = color(int.parse(spec.substring(index, index + 1)));
       }
     }

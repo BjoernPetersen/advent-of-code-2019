@@ -5,23 +5,25 @@ import 'package:async/async.dart';
 abstract class IO {
   Future<int> read();
 
-  write(int value);
+  void write(int value);
 }
 
 class StaticIO implements IO {
   final Iterator<int> _input;
-  final List<int> output = List();
+  final List<int> output = [];
 
-  StaticIO(List<int> input) : this._input = input.iterator;
+  StaticIO(List<int> input) : _input = input.iterator;
 
+  @override
   Future<int> read() async {
     if (!_input.moveNext()) {
-      throw StateError("no more input left");
+      throw StateError('no more input left');
     }
     return _input.current;
   }
 
-  write(int value) => output.add(value);
+  @override
+  void write(int value) => output.add(value);
 }
 
 class WiredIO implements IO {
@@ -36,7 +38,7 @@ class WiredIO implements IO {
   }
 
   @override
-  write(int value) {
+  void write(int value) {
     output(value);
   }
 }
@@ -55,18 +57,18 @@ class StreamIO implements IO {
   Future<int> read() => _inputStream.next;
 
   @override
-  write(int value) {
+  void write(int value) {
     _output.add(value);
   }
 
-  listen(void Function(int) onOutput) {
+  void listen(void Function(int) onOutput) {
     _output.stream.listen((value) {
-      this.lastOutput = value;
+      lastOutput = value;
       onOutput(value);
     });
   }
 
-  addInput(int value) {
+  void addInput(int value) {
     _input.add(value);
   }
 }

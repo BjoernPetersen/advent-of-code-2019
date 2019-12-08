@@ -80,13 +80,13 @@ class Canvas {
       : _fields = List(height);
 
   Set<Point> add(Wire wire) {
-    Set<Point> overlap = Set();
+    final overlap = <Point>{};
     for (final line in wire.lines) {
       final start = line.start;
       final end = line.end;
       final startY = min(start.y, end.y);
       final endY = max(start.y, end.y);
-      for (int y = startY; y <= endY; ++y) {
+      for (var y = startY; y <= endY; ++y) {
         var row = _fields[y - minY];
         if (row == null) {
           row = List(width);
@@ -94,8 +94,8 @@ class Canvas {
         }
         final startX = min(start.x, end.x);
         final endX = max(start.x, end.x);
-        for (int x = startX; x <= endX; ++x) {
-          Set<Wire> field = row[x - minX];
+        for (var x = startX; x <= endX; ++x) {
+          var field = row[x - minX];
           if (field == null) {
             field = HashSet();
             row[x - minX] = field;
@@ -111,26 +111,26 @@ class Canvas {
 
   Set<int> get(int x, int y) {
     final row = _fields[y];
-    if (row == null) return Set();
-    return row[x] ?? Set();
+    if (row == null) return {};
+    return row[x] ?? {};
   }
 
   @override
   String toString() {
     final buffer = StringBuffer();
-    for (int y = 0; y < height; ++y) {
+    for (var y = 0; y < height; ++y) {
       final row = _fields[y];
-      for (int x = 0; x < width; ++x) {
+      for (var x = 0; x < width; ++x) {
         if (row == null) {
-          buffer.write(".");
+          buffer.write('.');
         } else {
           final wires = row[x];
           if (wires == null) {
-            buffer.write(".");
+            buffer.write('.');
           } else if (wires.length > 1) {
-            buffer.write("X");
+            buffer.write('X');
           } else {
-            buffer.write("+");
+            buffer.write('+');
           }
         }
       }
@@ -183,13 +183,13 @@ class Wire {
   Wire(this.lines, this.maxX, this.maxY, this.minX, this.minY);
 
   factory Wire.fromLine(String line) {
-    final lines = Set<Line>();
-    int maxX = 0;
-    int maxY = 0;
-    int minX = 0;
-    int minY = 0;
+    final lines = <Line>{};
+    var maxX = 0;
+    var maxY = 0;
+    var minX = 0;
+    var minY = 0;
     var pos = Point(x: 0, y: 0);
-    for (final value in line.split(",")) {
+    for (final value in line.split(',')) {
       final added = _line(pos, value);
       lines.add(added);
       pos = added.end;
@@ -205,14 +205,16 @@ class Wire {
     final direction = value.substring(0, 1);
     final length = int.parse(value.substring(1));
     switch (direction) {
-      case "R":
+      case 'R':
         return Line(start, start + Point(x: length));
-      case "U":
+      case 'U':
         return Line(start, start - Point(y: length));
-      case "L":
+      case 'L':
         return Line(start, start - Point(x: length));
-      case "D":
+      case 'D':
         return Line(start, start + Point(y: length));
+      default:
+        throw ArgumentError('Unknown direction: $direction');
     }
   }
 }
@@ -246,6 +248,6 @@ class Point {
 
   @override
   String toString() {
-    return "($x, $y)";
+    return '($x, $y)';
   }
 }

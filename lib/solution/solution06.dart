@@ -3,18 +3,18 @@ import 'dart:math';
 import 'package:advent/advent.dart';
 
 class Solution6 extends Advent<void, int, int> {
-  final Map<String, OrbitObject> objectByName = Map();
+  final Map<String, OrbitObject> objectByName = {};
 
   @override
   void readInputLine(String line) {
-    final parts = line.split(")");
+    final parts = line.split(')');
     final orbited = parts[0];
     objectByName[parts[1]] = OrbitObject(parts[1], orbited);
   }
 
   @override
   void init(Iterable<String> input) {
-    objectByName["COM"] = OrbitObject("COM", null);
+    objectByName['COM'] = OrbitObject('COM', null);
     super.init(input);
     for (final object in objectByName.values) {
       object.init((name) => objectByName[name]);
@@ -23,7 +23,7 @@ class Solution6 extends Advent<void, int, int> {
 
   @override
   Future<int> solveOne() async {
-    final Map<OrbitObject, int> counts = Map();
+    final counts = <OrbitObject, int>{};
     for (final object in objectByName.values) {
       _addCount(counts, object);
     }
@@ -50,9 +50,9 @@ class Solution6 extends Advent<void, int, int> {
 
   @override
   Future<int> solveTwo() async {
-    final start = objectByName["YOU"].orbited;
-    final end = objectByName["SAN"].orbited;
-    final result = _minimumDist(start, end, Map());
+    final start = objectByName['YOU'].orbited;
+    final end = objectByName['SAN'].orbited;
+    final result = _minimumDist(start, end, {});
     return result;
   }
 
@@ -89,10 +89,10 @@ class OrbitObject {
   OrbitObject get orbited => _orbitedObject;
 
   OrbitObject(this.name, String orbited)
-      : this.orbiters = Set(),
-        this._orbited = orbited;
+      : orbiters = {},
+        _orbited = orbited;
 
-  init(OrbitObject Function(String) getObject) {
+  void init(OrbitObject Function(String) getObject) {
     if (_orbited != null) {
       _orbitedObject = getObject(_orbited);
       _orbitedObject.orbiters.add(this);

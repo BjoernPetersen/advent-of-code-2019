@@ -10,7 +10,7 @@ class Interpreter {
     final program = List.of(initialState, growable: false);
     substitutions?.forEach((index, value) => program[index] = value);
     var pc = 0;
-    if (io == null) io = StaticIO(List());
+    io ??= StaticIO([]);
     while (pc > -1) {
       final instruction = Instruction.atIndex(program, pc);
       pc = await instruction.execute(io);
@@ -24,5 +24,5 @@ class Result {
   final List<int> outputs;
 
   Result(this.positionZero, List<int> outputs)
-      : this.outputs = List.unmodifiable(outputs);
+      : outputs = List.unmodifiable(outputs);
 }

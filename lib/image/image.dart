@@ -71,11 +71,11 @@ class Pixel {
   String toString() {
     switch (color) {
       case Color.black:
-        return "x";
+        return 'x';
       case Color.white:
-        return " ";
+        return ' ';
       default:
-        throw StateError("There are transparent pixels");
+        throw StateError('There are transparent pixels');
     }
   }
 }

@@ -8,16 +8,16 @@ import 'package:sprintf/sprintf.dart';
 Future<void> main(List<String> arguments) async {
   final parser = ArgParser()
     ..addOption(
-      "day",
-      abbr: "d",
-      help: "The day of the challenge. Option name can be ommitted.",
-      valueHelp: "number",
+      'day',
+      abbr: 'd',
+      help: 'The day of the challenge. Option name can be ommitted.',
+      valueHelp: 'number',
     )
     ..addOption(
-      "input",
-      abbr: "i",
-      help: "Input file, default to input/<day>.txt",
-      valueHelp: "path to txt file",
+      'input',
+      abbr: 'i',
+      help: 'Input file, default to input/<day>.txt',
+      valueHelp: 'path to txt file',
     );
 
   final parsed = parser.parse(arguments);
@@ -31,9 +31,9 @@ Future<void> main(List<String> arguments) async {
 
 extension on ArgResults {
   String getDay() {
-    final opt = this["day"];
-    if (opt == null && this.rest.isNotEmpty) {
-      return this.rest.first;
+    final opt = this['day'];
+    if (opt == null && rest.isNotEmpty) {
+      return rest.first;
     } else {
       return opt;
     }
@@ -43,36 +43,36 @@ extension on ArgResults {
 Future<int> _run(ArgResults args) async {
   var dayString = args.getDay();
   if (dayString == null) {
-    print("No day provided.");
+    print('No day provided.');
     return 1;
   }
 
   final day = int.tryParse(dayString);
   if (day == null) {
-    print("Not a number: $dayString");
+    print('Not a number: $dayString');
     return 2;
   }
 
   final advent = await adventForDay(day);
   if (advent == null) {
-    print("No implementation for day $day found");
+    print('No implementation for day $day found');
     return 3;
   }
 
-  final inputPath = args["input"] ?? sprintf("input/%02i.txt", [day]);
+  final inputPath = args['input'] ?? sprintf('input/%02i.txt', [day]);
   final inputFile = File(inputPath);
   if (!await inputFile.exists()) {
-    print("No such file: $inputPath");
+    print('No such file: $inputPath');
     return 4;
   }
   final input = await inputFile.readAsString();
   advent.init(LineSplitter.split(input.trim()));
 
   final solutionOne = await advent.solveOne();
-  print("Solution one: $solutionOne");
+  print('Solution one: $solutionOne');
 
   final solutionTwo = await advent.solveTwo();
-  print("Solution two: $solutionTwo");
+  print('Solution two: $solutionTwo');
 
   return 0;
 }

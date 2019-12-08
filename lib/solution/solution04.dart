@@ -5,13 +5,13 @@ class Solution4 extends Advent<Range, int, int> {
 
   @override
   Range readInputLine(String line) {
-    final split = line.split("-");
+    final split = line.split('-');
     return Range(int.parse(split[0]), int.parse(split[1]));
   }
 
   bool _meetsCriteria1(int pass) {
     final str = pass.toString();
-    bool foundDouble = false;
+    var foundDouble = false;
     var last = -1;
     for (var numIndex = 0; numIndex < str.length; ++numIndex) {
       final num = int.parse(str.substring(numIndex, numIndex + 1));
@@ -26,7 +26,7 @@ class Solution4 extends Advent<Range, int, int> {
 
   bool _meetsCriteria2(int pass) {
     final str = pass.toString();
-    bool foundDouble = false;
+    var foundDouble = false;
     var last3 = -3;
     var last2 = -2;
     var last = -1;
