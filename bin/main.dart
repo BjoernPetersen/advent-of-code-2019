@@ -68,11 +68,17 @@ Future<int> _run(ArgResults args) async {
   final input = await inputFile.readAsString();
   advent.init(LineSplitter.split(input.trim()));
 
+  final beforeOne = DateTime.now();
   final solutionOne = await advent.solveOne();
-  print('Solution one: $solutionOne');
+  final afterOne = DateTime.now();
+  final durationOne = afterOne.difference(beforeOne);
+  print('Solution one (${durationOne.inMilliseconds} ms): $solutionOne');
 
+  final beforeTwo = DateTime.now();
   final solutionTwo = await advent.solveTwo();
-  print('Solution two: $solutionTwo');
+  final afterTwo = DateTime.now();
+  final durationTwo = afterTwo.difference(beforeTwo);
+  print('Solution two (${durationTwo.inMilliseconds} ms): $solutionTwo');
 
   return 0;
 }
