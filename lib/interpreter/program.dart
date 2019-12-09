@@ -22,7 +22,7 @@ class Program extends ListBase<int> {
   }
 
   @override
-  void set length(int newLength) {
+  set length(int newLength) {
     throw UnsupportedError('Fixed length list');
   }
 }
