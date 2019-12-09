@@ -1,5 +1,6 @@
 import 'package:advent/interpreter/instruction.dart';
 import 'package:advent/interpreter/io.dart';
+import 'package:advent/interpreter/program.dart';
 
 class Interpreter {
   Future<int> execute(
@@ -7,7 +8,7 @@ class Interpreter {
     Map<int, int> substitutions,
     IO io,
   }) async {
-    final program = List.of(initialState, growable: false);
+    final program = Program(initialState);
     substitutions?.forEach((index, value) => program[index] = value);
     var pc = 0;
     io ??= StaticIO([]);
