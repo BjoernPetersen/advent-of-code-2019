@@ -1,6 +1,7 @@
 import 'package:advent/advent.dart';
 import 'package:advent/interpreter/interpreter.dart';
 import 'package:advent/interpreter/io.dart';
+import 'package:advent/interpreter/util.dart';
 
 class Solution5 extends Advent<List<int>, int, int> {
   List<int> get program => input.first;
@@ -8,10 +9,7 @@ class Solution5 extends Advent<List<int>, int, int> {
 
   @override
   List<int> readInputLine(String line) {
-    return line
-        .splitOn(','.codeUnitAt(0))
-        .map(int.parse)
-        .toList(growable: false);
+    return readProgramLine(line);
   }
 
   @override

@@ -3,16 +3,14 @@ import 'dart:math';
 import 'package:advent/advent.dart';
 import 'package:advent/interpreter/interpreter.dart';
 import 'package:advent/interpreter/io.dart';
+import 'package:advent/interpreter/util.dart';
 
 class Solution7 extends Advent<List<int>, int, int> {
   List<int> get program => input.first;
 
   @override
   List<int> readInputLine(String line) {
-    return line
-        .splitOn(','.codeUnitAt(0))
-        .map(int.parse)
-        .toList(growable: false);
+    return readProgramLine(line);
   }
 
   Future<int> _amplifySimple(List<int> phases) async {
