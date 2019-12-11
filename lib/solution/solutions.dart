@@ -9,6 +9,7 @@ import 'package:advent/solution/solution07.dart';
 import 'package:advent/solution/solution08.dart';
 import 'package:advent/solution/solution09.dart';
 import 'package:advent/solution/solution10.dart';
+import 'package:advent/solution/solution11.dart';
 
 Advent adventForDay(int day) {
   switch (day) {
@@ -32,6 +33,8 @@ Advent adventForDay(int day) {
       return Solution9();
     case 10:
       return Solution10();
+    case 11:
+      return Solution11();
     default:
       return null;
   }
