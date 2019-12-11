@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:advent/image/color.dart';
+import 'package:advent/image/point.dart';
 
 class Layer extends IterableBase<Color> {
   final int width, height;
@@ -25,9 +26,19 @@ class Layer extends IterableBase<Color> {
     return _pixels[y][x];
   }
 
-  Iterable<Color> _allPixels() sync* {
+  Color operator [](Point point) => get(point.x, point.y);
+
+  Iterable<Color> _allColors() sync* {
     for (var y = 0; y < height; ++y) {
       yield* _pixels[y];
+    }
+  }
+
+  Iterable<Point> points() sync* {
+    for (var y = 0; y < height; ++y) {
+      for (var x = 0; x < width; ++x) {
+        yield Point(x: x, y: y);
+      }
     }
   }
 
@@ -35,5 +46,5 @@ class Layer extends IterableBase<Color> {
   int get length => _pixels.length;
 
   @override
-  Iterator<Color> get iterator => _allPixels().iterator;
+  Iterator<Color> get iterator => _allColors().iterator;
 }

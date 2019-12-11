@@ -1,7 +1,6 @@
 import 'package:advent/advent.dart';
 import 'package:advent/interpreter/interpreter.dart';
 import 'package:advent/interpreter/io.dart';
-import 'package:advent/util/strings.dart';
 
 class Solution5 extends Advent<List<int>, int, int> {
   List<int> get program => input.first;

@@ -1,3 +1,6 @@
+export 'package:advent/util/ints.dart';
+export 'package:advent/util/strings.dart';
+
 abstract class Advent<I, O1, O2> {
   List<I> _input;
 

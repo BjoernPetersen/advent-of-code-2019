@@ -1,7 +1,6 @@
 import 'package:advent/advent.dart';
 import 'package:advent/interpreter/interpreter.dart';
 import 'package:advent/interpreter/io.dart';
-import 'package:advent/util/strings.dart';
 
 class Solution9 extends Advent<List<int>, int, int> {
   @override
